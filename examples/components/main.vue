@@ -1,7 +1,6 @@
 <template>
   <screen ref="screen" :smartCSR="true" :keys="true" :mouse="true">
     <component :is="activeComponent" align="center" valign="middle" top="center" left="center" width="50%" height="50%" />
-    <listbar :items="items" :keys="true" :mouse="true" top="100%-1" :left="0" :height="1" width="100%" />
   </screen>
 </template>
 
@@ -18,17 +17,15 @@ export default {
   },
   data: () => {
     return {
-      activeComponent: 'Page1',
-      items: [
-        { keys: ['f1'], text: 'Page1', callback: () => {this.activeComponent = 'Page1'}},
-        { keys: ['f2'], text: 'Page2', callback: () => {this.activeComponent = 'Page2'}}
-      ]
+      activeComponent: 'Page1'
     }
   },
   mounted () {
     this.$refs.screen.key(['C-c'], () => {
       process.exit(0)
     })
+    this.$refs.screen.key(['f1'], () => {this.activeComponent = 'Page1'})
+    this.$refs.screen.key(['f2'], () => {this.activeComponent = 'Page2'})
   }
 }
 </script>
